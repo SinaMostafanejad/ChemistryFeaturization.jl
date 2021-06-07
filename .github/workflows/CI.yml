@@ -23,6 +23,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@v1
+        with:
+          version: ${{ matrix.julia-version }}
       - name: Format code
         run: |
           using Pkg
@@ -35,8 +37,6 @@ jobs:
         with:
           tool_name: JuliaFormatter
           fail_on_error: true
-        with:
-          version: ${{ matrix.julia-version }}
       - uses: actions/cache@v1
         env:
           cache-name: cache-artifacts
